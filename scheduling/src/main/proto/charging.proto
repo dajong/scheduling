@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.charging";
+option java_outer_classname = "ChargingServiceProto";
+
+service ChargingService {
+    rpc CreateChargingSession(CreateChargingSessionRequest) returns (ChargingSessionResponse);
+    rpc GetChargingSession(GetChargingSessionRequest) returns (ChargingSessionResponse);
+    rpc UpdateChargingSession(UpdateChargingSessionRequest) returns (ChargingSessionResponse);
+    rpc DeleteChargingSession(DeleteChargingSessionRequest) returns (DeleteChargingSessionResponse);
+    rpc ListChargingSessions(ListChargingSessionsRequest) returns (ListChargingSessionsResponse);
+}
+
+message ChargingSession {
+    string id = 1;
+    string userId = 2;
+    string evId = 3;
+    string stationId = 4;
+    string startTime = 5;
+    string endTime = 6;
+    string status = 7;
+}
+
+message CreateChargingSessionRequest {
+    ChargingSession session = 1;
+}
+
+message GetChargingSessionRequest {
+    string id = 1;
+}
+
+message UpdateChargingSessionRequest {
+    ChargingSession session = 1;
+}
+
+message DeleteChargingSessionRequest {
+    string id = 1;
+}
+
+message ListChargingSessionsRequest {
+    string userId = 1;
+}
+
+message ChargingSessionResponse {
+    ChargingSession session = 1;
+}
+
+message DeleteChargingSessionResponse {
+    string status = 1;
+}
+
+message ListChargingSessionsResponse {
+    repeated ChargingSession sessions = 1;
+}
